@@ -27,11 +27,11 @@ def multi_layer_perception(status_size, action_size, n_hidden_layers=1, hidden_d
     return model
 
 class Agent(object):
-    def __init__(self, status_size, action_size, batch_size):
+    def __init__(self, status_size, action_size, batch_size, number_of_stocks):
         self.status_size = status_size
         self.action_size = action_size
         self.batch_size = batch_size
-        self.memory = ReplayBuffer(status_size, action_size, size=500)
+        self.memory = ReplayBuffer(status_size, size=500)
         self.gamma = 0.95 #discount rate: make infite sum finite
         #decisionmaker is uncertain if next decision is going to end
         #robot optimize discounted sum reward ISO optimize sum reward
@@ -47,7 +47,9 @@ class Agent(object):
         if np.random.rand() <= self.epsilon:
             return np.random.choice(self.action_size)
         action_value = self.model.predict(status)
+        # generate numpy array of predictions from the parameter status
         return np.argmax(action_value[0])  # returns action
+        # argmax returns the position of max value
 
     def replay(self, batch_size):
         # check if replay buffer contains enough data

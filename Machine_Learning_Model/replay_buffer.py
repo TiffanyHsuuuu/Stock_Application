@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 class ReplayBuffer:
-    def __init__(self, status_size, action_size, size):
+    def __init__(self, status_size, size):
         self.current_status = np.zeros([size, status_size], dtype=np.float32)
         self.next_status = np.zeros([size, status_size], dtype=np.float32)
         self.action = np.zeros(size, dtype=np.uint8)

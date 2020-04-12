@@ -37,17 +37,17 @@ def make_dir(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def run(agent, env, is_train, scaler):
+def run(agent, env, is_train, scaler, batch_size):
     status = env.reset()
     status = scaler.transform([status])
     is_done = False
 
     while not is_done:
-        action = agent.action(status)
-        next_status, reward, is_done, value = env.step(action)
+        index_of_action = agent.action(status)
+        next_status, reward, is_done, value = env.step(index_of_action)
         next_status = scaler.transform([next_status])
         if is_train == 'train':
-            agent.update_replay_memory(status, action, reward, next_status, is_done)
+            agent.update_replay_memory(status, index_of_action, reward, next_status, is_done)
             agent.replay(batch_size)
         status = next_status
     return value['current_value']
@@ -56,7 +56,7 @@ def run(agent, env, is_train, scaler):
 if __name__ == '__main__':
 
     initial_investment = 20000
-    agent_count = 2000
+    agent_count = 50
     batch_size = 32
 
     models_folder = 'linear_rl_trader_models'
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     env = MultiStockEnv(training_data, initial_investment)
     status_size = env.status_size
     action_size = len(env.action_permutations)
-    agent = Agent(status_size, action_size, batch_size)
+    agent = Agent(status_size, action_size, batch_size, number_of_stocks)
     scaler = get_scaler(env)
 
     portfolio_value = []
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     # run agent agent_count times
     for i in range(agent_count):
         start = datetime.now()
-        value = run(agent, env, args.mode, scaler)
+        value = run(agent, env, args.mode, scaler, batch_size)
         period = datetime.now() - start
         print(f"run: {i + 1}/{agent_count}, final value after running: {value:.2f}, duration:{period}")
         portfolio_value.append(value)
