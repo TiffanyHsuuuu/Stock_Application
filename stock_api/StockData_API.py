@@ -47,9 +47,3 @@ def get_data():
 
 
 get_data()
-
-"""
-    with open('AAPL_macd_data.csv', 'w') as f:
-        writer = csv.DictWriter(f, fieldnames=list(macd.keys()))
-        writer.writeheader()
-        writer.writerow(macd) """
