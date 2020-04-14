@@ -1,0 +1,28 @@
+{% macro navbar() %}
+<div class="top-bar" id="realEstateMenu">
+  <div class="top-bar-left">
+    <ul class="menu" data-responsive-menu="accordion">
+      <li class="menu-text">Contact</li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Feedback</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><a href="#">My Account</a></li>
+      <li><a class="button">Login</a></li>
+    </ul>
+  </div>
+</div>
+{% endmacro %} {% macro stock_tile(title, abbreviation, image) %}
+<div class="column">
+  <div class="callout">
+    <p>{{ title }}</p>
+    <p>
+      <img src="static/images/{{image}}" alt="sbux" />
+    </p>
+    <p class="lead">{{ abbreviation }}</p>
+    <p class="subheader">Get Price History and Price Forecast</p>
+  </div>
+</div>
+{% endmacro %}
