@@ -10,4 +10,4 @@
 
 
 ## FrontEnd
-![](/FrontEnd/images/FrontPage.jpg)
+![](/FrontEnd/images/FrontPage.png)
