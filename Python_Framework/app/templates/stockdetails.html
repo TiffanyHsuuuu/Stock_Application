@@ -1,0 +1,149 @@
+{% from "macros.html" import navbar %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock | Insiders</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/stockdetails.css') }}"
+    />
+  </head>
+  <body>
+    {{ navbar() }}
+    <br />
+
+    <div class="grid-container">
+      <div class="grid-x grid-margin-x">
+        <div class="medium-8 cell align-self-middle">
+          <h1>Apple</h1>
+          <div class="subheader">Stock index: ______</div>
+          <div class="subheader">Stock name: ______</div>
+          <br />
+        </div>
+        <div class="medium-4 cell">
+          <img width="180px" src="static/images/apple.jpg" alt="AAPL" />
+        </div>
+        <div class="medium-12 cell">
+          <hr />
+        </div>
+        <div class="medium-8 cell">
+          <p class="lead">Current price:</p>
+          <p class="lead">Historical price:</p>
+          <p class="lead">Price difference:</p>
+          <div style="border: 1px solid silver; border-radius: 7px; padding: 20px;">
+          <p class="lead">Forecast</p>
+          <canvas id="line-chart" width="100" height="50"></canvas>
+          </div>
+        </div>
+        <div
+          style="background-color: #ebebeb; padding: 10px;"
+          class="medium-4 cell"
+        >
+          <p class="lead">
+            News
+          </p>
+          
+            <div
+              style="
+                background-color: #fefefe;
+                border: 1px solid silver;
+                border-radius: 7px;
+                padding: 5px;
+                margin-bottom: 7px;
+              "
+            >
+              <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
+              <span>Apple takes over Huawei</span>
+            </div>
+            <div
+              style="
+                background-color: #fefefe;
+                border: 1px solid silver;
+                border-radius: 7px;
+                padding: 5px;
+                margin-bottom: 7px;
+              "
+            >
+              <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
+              <span>Apple takes over Huawei</span>
+            </div>
+            <div
+              style="
+                background-color: #fefefe;
+                border: 1px solid silver;
+                border-radius: 7px;
+                padding: 5px;
+                margin-bottom: 7px;
+              "
+            >
+              <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
+              <span>Apple takes over Huawei</span>
+            </div>
+            <div
+              style="
+                background-color: #fefefe;
+                border: 1px solid silver;
+                border-radius: 7px;
+                padding: 5px;
+                margin-bottom: 7px;
+              "
+            >
+              <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
+              <span>Apple takes over Huawei</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>
+      var ctx = document.getElementById('line-chart').getContext('2d');
+      var lineChart = new Chart(document.getElementById('line-chart'), {
+        type: 'line',
+        data: {
+          labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+          datasets: [
+            {
+              data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+              label: 'Africa',
+              borderColor: '#3e95cd',
+              fill: false,
+            },
+            {
+              data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
+              label: 'Asia',
+              borderColor: '#8e5ea2',
+              fill: false,
+            },
+            {
+              data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
+              label: 'Europe',
+              borderColor: '#3cba9f',
+              fill: false,
+            },
+            {
+              data: [40, 20, 10, 16, 24, 38, 74, 167, 508, 784],
+              label: 'Latin America',
+              borderColor: '#e8c3b9',
+              fill: false,
+            },
+            {
+              data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
+              label: 'North America',
+              borderColor: '#c45850',
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'World population per region (in millions)',
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
