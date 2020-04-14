@@ -7,3 +7,7 @@
 ### Daily Time Series for AAPL
 ![](/stock_api/AAPL.png)
 ![](/stock_api/AAPL_macd.png)
+
+
+## FrontEnd
+![](/FrontEnd/images/FrontPage.jpg)
