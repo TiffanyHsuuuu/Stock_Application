@@ -11,3 +11,4 @@
 
 ## FrontEnd
 ![](/Images/FrontPage.png)
+![](/Images/Stockdetail.png)
