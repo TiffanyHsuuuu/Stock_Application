@@ -30,7 +30,7 @@
         <div class="medium-8 cell">
           <p class="lead">Current price: 257,50 EUR</p>
           <div style="border: 1px solid silver; border-radius: 7px; padding: 20px;">
-          <p class="lead">Stock Price Predictions and Targets</p>
+          <p class="lead">Stock Historical Price</p>
           <canvas id="line-chart" width="100" height="50"></canvas>
           </div>
         </div>
@@ -52,7 +52,7 @@
               "
             >
               <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
-              <span>iPhone SE from Apple is here</span>
+              <span>Apple takes over Huawei</span>
             </div>
             <div
               style="
@@ -64,7 +64,7 @@
               "
             >
               <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
-              <span>Is Apple watch a well-rounded affair?</span>
+              <span>Apple takes over Huawei</span>
             </div>
             <div
               style="
@@ -76,7 +76,7 @@
               "
             >
               <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
-              <span>Apple: Risen from Ruins!</span>
+              <span>Apple takes over Huawei</span>
             </div>
             <div
               style="
@@ -88,7 +88,7 @@
               "
             >
               <img width="50px" src="static/images/apple.jpg" alt="AAPL" />
-              <span>Mini iPhone vs. Google's cheap phone</span>
+              <span>Apple takes over Huawei</span>
             </div>
           </div>
         </div>
@@ -96,8 +96,8 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script>
-      var ctx = document.getElementById('line-chart').getContext('2d');
-      var lineChart = new Chart(document.getElementById('line-chart'), {
+      var ctx = document.getElementById('forecast-chart').getContext('2d');
+      var forecastChart = new Chart(document.getElementById('line-chart'),{
         type: 'line',
         data: {
           labels: [
@@ -108,17 +108,27 @@
           datasets: [
             {
               data: [
-                {% for item in values %}
+                {% for item in predictions %}
                 "{{item}}",
                 {% endfor %}
               ],
-              label: 'Actual Price',
+              label: 'Predictions',
               borderColor: '#3e95cd',
+              fill: false,
+            },
+            {
+              data: [
+                {% for item in targets %}
+                "{{item}}",
+                {% endfor %}
+              ],
+              label: 'Targets',
+              borderColor: '#3cba9f',
               fill: false,
             },
           ],
         },
       });
-    </script>
+      </script>
   </body>
 </html>

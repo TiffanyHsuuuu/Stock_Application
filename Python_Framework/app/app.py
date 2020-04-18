@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from flask import Flask, render_template
 from flask_restful import Api
 from flask_jwt import JWT
@@ -30,8 +31,18 @@ def frontpage():
 
 @app.route('/stockdetails')
 def stockdetails():
-    return render_template('stockdetails.html')
+    df = pd.read_csv('AAPL_data.csv', sep=r'\t', engine='python')
+    labels = df['date'].values
+    values = df['4. close'].values
+    return render_template('stockdetails.html', values=values, labels=labels)
 
+@app.route('/predictions')
+def predictions():
+    df = pd.read_csv('AAPL_data.csv', sep=r'\t', engine='python')
+    labels = df['date'].values
+    predictions = pd.read_csv('predictions.csv', sep=',')
+    targets = pd.read_csv('targets.csv', sep=',')
+    return render_template('predictions.html',labels=labels, predictions=predictions, targets=targets)
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

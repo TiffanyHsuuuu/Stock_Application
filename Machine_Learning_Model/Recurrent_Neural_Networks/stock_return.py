@@ -63,3 +63,9 @@ plt.plot(Y, label='Targets')
 plt.plot(predictions, label='Predictions')
 plt.legend()
 plt.show()
+
+file = np.asarray(Y)
+file.tofile('targets.csv', sep=',', format='%10.5f')
+
+file = np.asarray(predictions)
+file.tofile('predictions.csv', sep=',', format='%10.5f')
